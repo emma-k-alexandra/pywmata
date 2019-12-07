@@ -1,4 +1,5 @@
 from unittest import TestCase
+from datetime import datetime
 
 from wmata.rail import responses, station
 from wmata.rail import station
@@ -103,7 +104,75 @@ class TestResponses(TestCase):
             ]
         })
 
-        self.assertTrue(isinstance(
-            station_to_station_infos.station_to_station_infos[0], 
-            responses.StationToStationInfo
-        ))
+        self.assertTrue(
+            isinstance(
+                station_to_station_infos.station_to_station_infos[0], 
+                responses.StationToStationInfo
+            )
+        )
+
+    def test_elevator_and_escalator_incident(self):
+        elevator_and_escalator_incident = responses.ElevatorAndEscalatorIncident({
+            "DateOutOfServ": "2014-10-27T15:17:00",
+            "DateUpdated": "2014-10-28T06:28:30",
+            "DisplayOrder": 0,
+            "EstimatedReturnToService": "2014-10-30T23:59:59",
+            "LocationDescription": "Escalator between mezzanine and platform to Shady Grove",
+            "StationCode": "A03",
+            "StationName": "Dupont Circle, Q Street Entrance",
+            "SymptomCode": None,
+            "SymptomDescription": "Service Call",
+            "TimeOutOfService": "1517",
+            "UnitName": "A03N04",
+            "UnitStatus": None,
+            "UnitType": "ESCALATOR"
+        })
+
+        self.assertTrue(isinstance(elevator_and_escalator_incident.estimated_return_to_service, datetime))
+
+    def test_elevator_and_escalator_incident_null_return_to_service(self):
+        elevator_and_escalator_incident = responses.ElevatorAndEscalatorIncident({
+            "DateOutOfServ": "2014-10-27T15:17:00",
+            "DateUpdated": "2014-10-28T06:28:30",
+            "DisplayOrder": 0,
+            "EstimatedReturnToService": None,
+            "LocationDescription": "Escalator between mezzanine and platform to Shady Grove",
+            "StationCode": "A03",
+            "StationName": "Dupont Circle, Q Street Entrance",
+            "SymptomCode": None,
+            "SymptomDescription": "Service Call",
+            "TimeOutOfService": "1517",
+            "UnitName": "A03N04",
+            "UnitStatus": None,
+            "UnitType": "ESCALATOR"
+        })
+
+        self.assertEqual(elevator_and_escalator_incident.estimated_return_to_service, None)
+
+    def test_elevator_and_escalator_incidents(self):
+        elevator_and_escalator_incidents = responses.ElevatorAndEscalatorIncidents({
+            "ElevatorIncidents": [
+                {
+                    "DateOutOfServ": "2014-10-27T15:17:00",
+                    "DateUpdated": "2014-10-28T06:28:30",
+                    "DisplayOrder": 0,
+                    "EstimatedReturnToService": "2014-10-30T23:59:59",
+                    "LocationDescription": "Escalator between mezzanine and platform to Shady Grove",
+                    "StationCode": "A03",
+                    "StationName": "Dupont Circle, Q Street Entrance",
+                    "SymptomCode": None,
+                    "SymptomDescription": "Service Call",
+                    "TimeOutOfService": "1517",
+                    "UnitName": "A03N04",
+                    "UnitStatus": None,
+                    "UnitType": "ESCALATOR"
+                }
+            ]
+        })
+
+        self.assertTrue(
+            isinstance(
+                elevator_and_escalator_incidents.incidents[0],
+                responses.ElevatorAndEscalatorIncident
+            )
+        )

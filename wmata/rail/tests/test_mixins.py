@@ -73,4 +73,22 @@ class TestRequiresStation(TestCase):
 
         self.assertTrue(isinstance(response, responses.StationToStationInfos), response)
 
+    @vcr.use_cassette(VCR_STORAGE.format('elevator_and_escalator_incidents'))
+    def test_elevator_and_escalator_incidents(self):
+        response = self.requires_station.elevator_and_escalator_incidents_at(
+            station=None,
+            api_key=API_KEY
+        )
+
+        self.assertTrue(isinstance(response, responses.ElevatorAndEscalatorIncidents), response)
+
+    @vcr.use_cassette(VCR_STORAGE.format('elevator_and_escalator_incidents_A01'))
+    def test_elevator_and_escalator_incidents_at_metro_center(self):
+        response = self.requires_station.elevator_and_escalator_incidents_at(
+            station=station.Station["A01"],
+            api_key=API_KEY
+        )
+
+        self.assertTrue(isinstance(response, responses.ElevatorAndEscalatorIncidents), response)
+
 

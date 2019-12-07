@@ -1,6 +1,6 @@
 from typing import Optional, Union
 from .urls import URLs
-from .responses import Stations, StationToStationInfos
+from . import responses
 from .line import Line
 from .station import Station
 from ..mixins import Fetcher
@@ -9,7 +9,7 @@ from ..error import WMATAError
 class RequiresLine(Fetcher):
     """Methods that require a Line
     """
-    def stations_on(self, line: Optional[Line], api_key: str) -> Union[Stations, WMATAError]:
+    def stations_on(self, line: Optional[Line], api_key: str) -> Union[responses.Stations, WMATAError]:
         """Stations on the given line
         
         Arguments:
@@ -28,13 +28,13 @@ class RequiresLine(Fetcher):
             URLs.Stations.value,
             params=params,
             api_key=api_key,
-            output_class=Stations
+            output_class=responses.Stations
         )
 
 class RequiresStation(Fetcher):
     """Methods that require a Station
     """
-    def station_to_station(self, from_station: Optional[Station], destination_station: Optional[Station], api_key: str) -> Union[StationToStationInfos, WMATAError]:
+    def station_to_station(self, from_station: Optional[Station], destination_station: Optional[Station], api_key: str) -> Union[responses.StationToStationInfos, WMATAError]:
         """ Distance, fare information, and estimated travel time between any two stations, including those on different lines.
         WMATA Documentation: https://developer.wmata.com/docs/services/5476364f031f590f38092507/operations/5476364f031f5909e4fe3313?
         
@@ -58,6 +58,29 @@ class RequiresStation(Fetcher):
             URLs.StationToStation.value,
             params=params,
             api_key=api_key,
-            output_class=StationToStationInfos
+            output_class=responses.StationToStationInfos
+        )
+
+    def elevator_and_escalator_incidents_at(self, station: Optional[Station], api_key: str) -> Union[responses.ElevatorAndEscalatorIncidents, WMATAError]:
+        """List of reported elevator and escalator outages at a given station.
+        WMATA Documentation https://developer.wmata.com/docs/services/54763641281d83086473f232/operations/54763641281d830c946a3d76?
+        
+        Arguments:
+            station {Optional[Station]} -- Station to check for incidents at
+            api_key {str} -- WMATA API Key
+        
+        Returns:
+            Union[responses.ElevatorAndEscalatorIncidents, WMATAError]
+        """
+        params = {}
+
+        if station:
+            params["StationCode"] = station.value
+
+        return self.fetch(
+            URLs.ElevatorAndEscalatorIncidents.value,
+            params=params,
+            api_key=api_key,
+            output_class=responses.ElevatorAndEscalatorIncidents
         )
         

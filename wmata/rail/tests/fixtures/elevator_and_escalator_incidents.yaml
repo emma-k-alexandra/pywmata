@@ -1,0 +1,79 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.16.0
+      api_key:
+      - 9e38c3eab34c4e6c990828002828f5ed
+    method: GET
+    uri: https://api.wmata.com/Incidents.svc/json/ElevatorIncidents
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAEAO29B2AcSZYlJi9tynt/SvVK1+B0oQiAYBMk2JBAEOzBiM3mkuwdaUcjKasqgcpl
+        VmVdZhZAzO2dvPfee++999577733ujudTif33/8/XGZkAWz2zkrayZ4hgKrIHz9+fB8/In7xR6dl
+        fpm1VX22nBazfNk2Hz363i/+6Ktl0b7IFvlHjz463tn/vXc+/WjEn725XuGz09cnx8+P33z5Sj9+
+        3Wbtmt5crsty9BH+KqrlSTVDW3qfWulnCvO7VTUr8+v0ZVa/3f6pqrp7PMsWTfpFVV9kS2r9vJpy
+        86d5M62LFX6lt06baVYC13SSt1d5vkwXxYzgpGW2nBXLi5R+pIv8Bz/IlsUyJzCvrxertloIIoLb
+        m2KRf7luvzx/ndeXxZQ+/2hnf2fPNQ67/KJYUnev8lVW1NTmadGsyuz6y3qW1x892hnv0EdZ6wDS
+        G3s7uw+3d/e2dz59s7P/aGfv0c4OXqRWX61m9O/Mb/Pgzc6DR/cfPNq5T21Om7ZYoMWrvF3XyzcV
+        IAqK9oWDN3v3Ht1/SP/76JeMgml6snPv9YdME71PrfQzhUnvVMtUPxulX2RNk03n6yZv2yY9vszH
+        6emyrbPlNE/bKg1ap6/n1aohiLedyqat87z9ulO4NzyFZ8tmlU/xx9ebx/03mET634Z5vP9m9/6j
+        vQeP7u1Sm1vM4+7uhnm8/3uzxOCzrzWP4CX9zMCsq+othGT75Ktj+va2c2IngqfFzFCbnmTtvCqL
+        Kab8Mq+bor0mqEp9wUNQi03V/j1mNGkcYvChU3UPInfv3sapIrF8+Ghv99H9207VvQ1T9envvQMw
+        +OxrTRXkVT9TmM+quk3fVG2bv5ceDCZqvVrldUpUa8+repHSP0TOWfqcvieYSnnBQdCKTtP+A9c4
+        7P+L7KcZ5PvO0C7REzO0TwpvwwyRMH366P7Bo3tA4BYzRFM6OEO7O783awZ8Zmbo+elP3naCdoGm
+        fqYgvzvPifTDk/N5VmcXeZqrWaV2SkOBKd3ECP7p/QPXOIT5Bb1aL4sfcHfU6LYU33lARH+zw9Tc
+        RHFScTQrnz5ifvwGKA4Bx2f/L6f4vX3uTBqHML8uxcHjRM17j/Z3bqI4NXjwaB/K+sMofrJz/7Sn
+        hW5PcXqdWulnCvJV1TTlNcYdp7jxGa3+EdMwimgfgqEElv4Ehchs7B7cg6Bq47C/k3VDnxFU46RS
+        w1vPCBNvl9TJZhNOBN5jEw7mvc2MDLtiJ7ALoCo+MzPyHnaB3qdW+pnCPK5L8nBJDNKTfJG3eQ2L
+        OzA7N5gHIhtPDXy2Z/DeqmWRbb9e1dTBeZGXM4Ks0yAICY6xOdu5z5hK4xCLD/Kcd3ce3Sd1tHG6
+        dsm7JjN+WyMxPF1Pdx70jcR7TBe9T630M4X5siKCZFM4yfTdbedJxIgnyU4Zva70le4Eg/hkgF7a
+        OOzqAybjAU8GKSsAR6vIZEib3Uf34LfeZjIebp4MiCA++//uZGy05l/Pfdp5uL1H7tONxvw+Ysp7
+        B492H1KbD5wMGPOuZNzetNDr1Eo/MyDzbHlVVdAxAxPRtS2W+DwVRCpWXvS+Elc6k/5jM/Hw3vBM
+        fIhYUBhBVN40E9wGjsCHz8TpB4oFvU+t9DOF+d28adNvX2cUzF8WZQnmHpiSnmzE5wQG5QkMylxF
+        TYkuOAhasRl6cB96QxuHXX/YDFFuhYzExhkixXXv00fMqB86Qw8/cIbAJfqZwjypaFrIteU02Vdp
+        dZ5+8ZQafdgsEQAltfQsyETmZXdn92dDcshy7zwif2zTvFCbe4/IwLODfpt5Gbbuz3Y+fdHTYe8x
+        L/Q+tdLPFObxMptWhFU2Sn+vomnSX5i+IrfUJsOo/Q9pivbuDUfpL+v8klxlStBQ4q5YUkIBuJEL
+        bXIs9OL7zNseSHxD6E7yRC4ZaTzEI7eZt2F5erZz0E+u3N720OvUSj9TkK+rdTunsA7aabneME2b
+        TdAFx5v0tpJdehQkInO0c2+fOUgahz197TBzZ3v3gMPMDV6ytNl/tEfkBQYb52NvZ3tnd/vezub5
+        6MrR/yvmgyj2flKzc2+Dc0avftCMbPLOpA3PyL1vYEZ2d/sS8j6abRcv62cKMzDfA7PxTSux3T0m
+        mDYOO9NWlHEuS2pz69kg1UK6CBE//Q8vUqvubHhtbp2GGdZXnyNv//Xlg16nVvqZgnye1RcVJYOv
+        EPSTAoelHZiTb1xC7jE60jjs6+tKyM6Bpsbu3SeS40Vq1Z2T3e29h/CayXXbvVFC8AIl6G+YE4DB
+        Zz/nc9JA3an14Gmxk0QwlNTSsyATm5f9XbiY2jjs7+vOC9F8h2LG/Ufkcm2YF23z6aM9tNk4L9Bc
+        +xCuoXn5vXb2Pkhz0fvUSj9TmCdlVufLGQ99YEJ6issP8YOV5LvternMoXGU1NKx4BKbl0/Z9dfG
+        Ybcf5CpTuE8SMzgt3AZzsvdoH/TcOC36gu8qf/+X/D8WgZjZASAAAA==
+    headers:
+      Arr-Disable-Session-Affinity:
+      - 'True'
+      Cache-Control:
+      - no-cache
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '1864'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sat, 07 Dec 2019 17:43:24 GMT
+      Expires:
+      - '-1'
+      Pragma:
+      - no-cache
+      Vary:
+      - Accept-Encoding
+      X-AspNet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+    status:
+      code: 200
+      message: OK
+version: 1
