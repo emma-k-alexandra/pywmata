@@ -4,6 +4,7 @@ from typing import List, Optional, Dict, Any
 from .station import Station
 from .line import Line
 from ..utils import to_snake_case
+from ..responses import Response
 
 def get_optional_line(value: Any) -> Optional[Line]:
     try:
@@ -19,18 +20,14 @@ def get_optional_station(value: Any) -> Optional[Station]:
     except KeyError:
         return None
 
-class Address:
+class Address(Response):
     city: str
     state: str
     street: str
     zipcode: str
 
-    def __init__(self, json: Dict[str, Any]):
-        for key, value in json.items():
-            setattr(self, to_snake_case(key), value)
 
-
-class StationResponse:
+class StationResponse(Response):
     address: Address
     station: Station
     latitude: float
@@ -44,8 +41,7 @@ class StationResponse:
     second_station_together: Optional[Station]
 
     def __init__(self, json: Dict[str, Any]):
-        for key, value in json.items():
-            setattr(self, to_snake_case(key), value)
+        super().__init__(json)
 
         self.address = Address(json["Address"])
         self.station = Station[json["Code"]]
@@ -60,14 +56,20 @@ class StationResponse:
         self.second_station_together = get_optional_station(json.get("StationTogether2"))
 
 
-class Stations:
+class Stations(Response):
     stations: List[StationResponse]
 
     def __init__(self, json: Dict[str, Any]):
         self.stations = [StationResponse(station_json) for station_json in json["Stations"]]
 
 
-class StationToStationInfo:
+class RailFare(Response):
+    off_peak_time: float
+    peak_time: float
+    senior_disabled: float
+
+
+class StationToStationInfo(Response):
     composite_miles: str
     destination: Station
     rail_fare: RailFare
@@ -75,14 +77,13 @@ class StationToStationInfo:
     source: Station
 
     def __init__(self, json: Dict[str, Any]):
-        for key, value in json.items():
-            setattr(self, to_snake_case(key), value)
+        super().__init__(json)
 
         self.destination = Station[json["DestinationStation"]]
         self.rail_fare = RailFare(json["RailFare"])
         self.source = Station[json["SourceStation"]]
-        
-class StationToStationInfos:
+
+class StationToStationInfos(Response):
     station_to_station_infos: List[StationToStationInfo]
 
     def __init__(self, json: Dict[str, Any]):
@@ -92,5 +93,3 @@ class StationToStationInfos:
             in json["StationToStationInfos"]
         ]
 
-
-class 

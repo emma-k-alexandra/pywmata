@@ -1,6 +1,7 @@
 from unittest import TestCase
 
 from wmata.rail import responses, station
+from wmata.rail import station
 
 class TestResponses(TestCase):
     def test_address(self):
@@ -61,4 +62,48 @@ class TestResponses(TestCase):
 
         self.assertTrue(isinstance(stations.stations[0], responses.StationResponse))
 
+    def test_rail_fare(self):
+        rail_fare = responses.RailFare({
+            "OffPeakTime": 3.6,
+            "PeakTime": 5.9,
+            "SeniorDisabled": 2.95
+        })
 
+        self.assertEqual(rail_fare.peak_time, 5.9)
+
+    def test_station_to_station_info(self):
+        station_to_station_info = responses.StationToStationInfo({
+            "CompositeMiles": 25.41,
+            "DestinationStation": "J03",
+            "RailFare": {
+                "OffPeakTime": 3.6,
+                "PeakTime": 5.9,
+                "SeniorDisabled": 2.95
+            },
+            "RailTime": 66,
+            "SourceStation": "E10"
+        })
+
+        self.assertEqual(station_to_station_info.source, station.Station["E10"])
+
+    def test_station_to_station_infos(self):
+        station_to_station_infos = responses.StationToStationInfos({
+            "StationToStationInfos": [
+                {
+                    "CompositeMiles": 25.41,
+                    "DestinationStation": "J03",
+                    "RailFare": {
+                        "OffPeakTime": 3.6,
+                        "PeakTime": 5.9,
+                        "SeniorDisabled": 2.95
+                    },
+                    "RailTime": 66,
+                    "SourceStation": "E10"
+                }
+            ]
+        })
+
+        self.assertTrue(isinstance(
+            station_to_station_infos.station_to_station_infos[0], 
+            responses.StationToStationInfo
+        ))

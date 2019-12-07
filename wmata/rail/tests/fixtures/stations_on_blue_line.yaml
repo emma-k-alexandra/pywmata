@@ -13,7 +13,7 @@ interactions:
       api_key:
       - 9e38c3eab34c4e6c990828002828f5ed
     method: GET
-    uri: https://api.wmata.com/Rail.svc/json/jStations
+    uri: https://api.wmata.com/Rail.svc/json/jStations?line=BL
   response:
     body:
       string: !!binary |
@@ -135,7 +135,7 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Sat, 07 Dec 2019 13:09:31 GMT
+      - Sat, 07 Dec 2019 16:59:00 GMT
       Expires:
       - '-1'
       Pragma:

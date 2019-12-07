@@ -4,6 +4,7 @@ from .responses import Stations, StationToStationInfos
 from .line import Line
 from .station import Station
 from ..mixins import Fetcher
+from ..error import WMATAError
 
 class RequiresLine(Fetcher):
     """Methods that require a Line
@@ -30,7 +31,7 @@ class RequiresLine(Fetcher):
             output_class=Stations
         )
 
-class RequiresStation:
+class RequiresStation(Fetcher):
     """Methods that require a Station
     """
     def station_to_station(self, from_station: Optional[Station], destination_station: Optional[Station], api_key: str) -> Union[StationToStationInfos, WMATAError]:
@@ -51,7 +52,7 @@ class RequiresStation:
             params["FromStationCode"] = from_station.value
 
         if destination_station:
-            params["ToStationCode"] = from_station.value
+            params["ToStationCode"] = destination_station.value
 
         return self.fetch(
             URLs.StationToStation.value,
