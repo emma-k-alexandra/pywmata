@@ -124,3 +124,21 @@ class RequiresStation(Fetcher):
             api_key=api_key,
             output_class=responses.RailPredictions
         )
+
+    def station_information(self, station: Station, api_key: str) -> Union[responses.StationInformation, WMATAError]:
+        """Location and address information at the given station.
+        WMATA Documentation https://developer.wmata.com/docs/services/5476364f031f590f38092507/operations/5476364f031f5909e4fe3310?
+        
+        Arguments:
+            station {Station} -- Station to get information for
+            api_key {str} -- WMATA API Key
+        
+        Returns:
+            Union[responses.StationInformation, WMATAError]
+        """
+        return self.fetch(
+            URLs.Information.value,
+            params={"StationCode": station.value},
+            api_key=api_key,
+            output_class=responses.StationInformation
+        )

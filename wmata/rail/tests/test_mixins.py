@@ -117,3 +117,12 @@ class TestRequiresStation(TestCase):
         )
 
         self.assertIsInstance(response, responses.RailPredictions)
+
+    @vcr.use_cassette(VCR_STORAGE.format('station_information'))
+    def test_station_information(self):
+        response = self.requires_station.station_information(
+            station=station.Station["A01"],
+            api_key=API_KEY
+        )
+
+        self.assertIsInstance(response, responses.StationInformation)

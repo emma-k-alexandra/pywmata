@@ -243,3 +243,25 @@ class TestResponses(TestCase):
 
         self.assertIsInstance(rail_predictions.trains[0], responses.RailPrediction)
 
+    def test_station_information(self):
+        station_information = responses.StationInformation({
+            "Address": {
+                "City": "Washington",
+                "State": "DC",
+                "Street": "607 13th St. NW",
+                "Zip": "20005"
+            },
+            "Code": "A01",
+            "Lat": 38.8983144732,
+            "LineCode1": "RD",
+            "LineCode2": None,
+            "LineCode3": None,
+            "LineCode4": None,
+            "Lon": -77.0280779971,
+            "Name": "Metro Center",
+            "StationTogether1": "C01",
+            "StationTogether2": ""
+        })
+
+        self.assertIsInstance(station_information.first_station_together, station.Station)
+
