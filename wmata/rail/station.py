@@ -1,6 +1,7 @@
 """MetroRail Station related structures
 """
 from enum import Enum
+from typing import Any, Optional
 
 class Station(Enum):
     """A MetroRail Station

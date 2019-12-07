@@ -14,8 +14,11 @@ setuptools.setup(
     url="https://github.com/emma-k-alexandra/pywmata",
     packages=setuptools.find_packages(),
     install_requires=[
-          'requests2'
-      ],
+        'requests2'
+    ],
+    tests_require=[
+        'vcrpy'
+    ],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
