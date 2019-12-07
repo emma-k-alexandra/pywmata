@@ -1,0 +1,60 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.16.0
+      api_key:
+      - 9e38c3eab34c4e6c990828002828f5ed
+    method: GET
+    uri: https://api.wmata.com/Incidents.svc/json/Incidents
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAEAO29B2AcSZYlJi9tynt/SvVK1+B0oQiAYBMk2JBAEOzBiM3mkuwdaUcjKasqgcpl
+        VmVdZhZAzO2dvPfee++999577733ujudTif33/8/XGZkAWz2zkrayZ4hgKrIHz9+fB8/In7xR2fL
+        aTHLl23z0aPvub/Onn706KPT3acnD0/3720fPzy9t73/6f7p9vH+pyfbT549OL3/7Mn+wcne8Uej
+        j57mzbQuVm1RLemlN/O6Wl/M07ZaFhfz9uMmnZZVUywvRulk3eRNWuerMpvmaVtnxbJJJ+3VMv1u
+        kc/LPP2F6etVTU3Tbxdlmc7W1KhKXxflZV6nz4tlnq7mWZOne3h3+ja9quq34/RseV49Sq8WWZuN
+        p9Xi7lWev82XM0LsdZvV7fNqmgG1Z+uyfJEt8o8eLem30Ueny9nQVy+zpsmXF3n9NC+z648e7Yx3
+        MEr6/XVOqBQtfSYtDbneXK/o7Y+Oy7xuqePTRV5f5Mvp9Zv8XWvaYgDN8fl5Pm3zGTV+/ZOH1PRp
+        1uZfrWb0Lz7b29l9uL27t73z4M3Op4/uP3y0u/fRLxl1puXZ3tPd3d2dk+3j0ydPtvdPnx7QjBzs
+        b5/u7d17uvfs/pOdgz1ADqZFKLz9Km9oYtLTrGnTpuXRp4VMUT67LcVfz9dtS9Ml87mqq0tCbjam
+        Pv8/T/H7j/Z2+xQ/OX5KDH/yYPv007297f2Dh8fbB/d3QPaTpzsPHu7cf3B/H5ADir8R/q5WeU19
+        pRjHdbr7abrAp1d3U8gEEZEJS7+KIDyrC+LdZl6s0m/nkJ+GhOKLfFZMszI9IXxoXnSWmuk8n61L
+        mrYFddTmy2w5zf/fPwmvnt44Cfce3d/pT8KD3afHTz89JR305CGx/fG9J9vHe6SXnp3uHuw/eHL6
+        YO/gASCHkzAn7laNMEofZtsPV6M0m80+LkF4zEQ4PwcyPTwXP5kt0xd5gxn4vMyXi2rZ/v+f9nuP
+        dj796Jd8/5f8PyvTOFsZBgAA
+    headers:
+      Arr-Disable-Session-Affinity:
+      - 'True'
+      Cache-Control:
+      - no-store, must-revalidate, no-cache
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '759'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sat, 07 Dec 2019 18:09:02 GMT
+      Expires:
+      - Sat, 07 Dec 2019 18:09:02 GMT
+      Pragma:
+      - no-cache
+      Vary:
+      - Accept-Encoding
+      X-AspNet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+    status:
+      code: 200
+      message: OK
+version: 1

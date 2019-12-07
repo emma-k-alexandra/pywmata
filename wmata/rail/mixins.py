@@ -84,3 +84,25 @@ class RequiresStation(Fetcher):
             output_class=responses.ElevatorAndEscalatorIncidents
         )
         
+    def incidents_at(self, station: Optional[Station], api_key: str) -> Union[responses.RailIncidents, WMATAError]:
+        """Reported rail incidents (significant disruptions and delays to normal service)
+        WMATA Documentation https://developer.wmata.com/docs/services/54763641281d83086473f232/operations/54763641281d830c946a3d77?
+        
+        Arguments:
+            station {Optional[Station]} -- Station to check for incidents api
+            api_key {str} -- WMATA API Key
+        
+        Returns:
+            Union[RailIncidents, WMATAError]
+        """
+        params = {}
+
+        if station:
+            params["StationCode"] = station.value
+
+        return self.fetch(
+            URLs.Incidents.value,
+            params=params,
+            api_key=api_key,
+            output_class=responses.RailIncidents
+        )

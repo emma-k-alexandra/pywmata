@@ -35,7 +35,7 @@ class TestResponses(TestCase):
             "StationTogether2": ""
         })
 
-        self.assertTrue(isinstance(station_response.station, station.Station))
+        self.assertIsInstance(station_response.station, station.Station)
     
     def test_stations(self):
         stations = responses.Stations({
@@ -104,11 +104,9 @@ class TestResponses(TestCase):
             ]
         })
 
-        self.assertTrue(
-            isinstance(
-                station_to_station_infos.station_to_station_infos[0], 
-                responses.StationToStationInfo
-            )
+        self.assertIsInstance(
+            station_to_station_infos.station_to_station_infos[0], 
+            responses.StationToStationInfo
         )
 
     def test_elevator_and_escalator_incident(self):
@@ -128,7 +126,10 @@ class TestResponses(TestCase):
             "UnitType": "ESCALATOR"
         })
 
-        self.assertTrue(isinstance(elevator_and_escalator_incident.estimated_return_to_service, datetime))
+        self.assertIsInstance(
+            elevator_and_escalator_incident.estimated_return_to_service, 
+            datetime
+        )
 
     def test_elevator_and_escalator_incident_null_return_to_service(self):
         elevator_and_escalator_incident = responses.ElevatorAndEscalatorIncident({
@@ -170,9 +171,44 @@ class TestResponses(TestCase):
             ]
         })
 
-        self.assertTrue(
-            isinstance(
-                elevator_and_escalator_incidents.incidents[0],
-                responses.ElevatorAndEscalatorIncident
-            )
+        self.assertIsInstance(
+            elevator_and_escalator_incidents.incidents[0],
+            responses.ElevatorAndEscalatorIncident
         )
+
+    def test_rail_incident(self):
+        rail_incident = responses.RailIncident({
+            "DateUpdated": "2010-07-29T14:21:28",
+            "DelaySeverity": None,
+            "Description": "Red Line: Expect residual delays to Glenmont due to an earlier signal problem outside Forest Glen.",
+            "EmergencyText": None,
+            "EndLocationFullName": None,
+            "IncidentID": "3754F8B2-A0A6-494E-A4B5-82C9E72DFA74",
+            "IncidentType": "Delay",
+            "LinesAffected": "RD;",
+            "PassengerDelay": 0,
+            "StartLocationFullName": None
+        })
+
+        self.assertIsInstance(rail_incident.date_updated, datetime)
+
+    def test_rail_incidents(self):
+        rail_incidents = responses.RailIncidents({
+            "Incidents": [
+                {
+                    "DateUpdated": "2010-07-29T14:21:28",
+                    "DelaySeverity": None,
+                    "Description": "Red Line: Expect residual delays to Glenmont due to an earlier signal problem outside Forest Glen.",
+                    "EmergencyText": None,
+                    "EndLocationFullName": None,
+                    "IncidentID": "3754F8B2-A0A6-494E-A4B5-82C9E72DFA74",
+                    "IncidentType": "Delay",
+                    "LinesAffected": "RD;",
+                    "PassengerDelay": 0,
+                    "StartLocationFullName": None
+                }
+            ]
+        })
+
+        self.assertIsInstance(rail_incidents.incidents[0], responses.RailIncident)
+

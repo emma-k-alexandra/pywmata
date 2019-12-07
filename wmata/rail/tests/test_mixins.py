@@ -26,7 +26,7 @@ class TestRequiresLine(TestCase):
             api_key=API_KEY
         )
 
-        self.assertTrue(isinstance(response, responses.Stations), response)
+        self.assertIsInstance(response, responses.Stations)
 
 
 class TestRequiresStation(TestCase):
@@ -41,7 +41,7 @@ class TestRequiresStation(TestCase):
             api_key=API_KEY
         )
 
-        self.assertTrue(isinstance(response, responses.StationToStationInfos), response)
+        self.assertIsInstance(response, responses.StationToStationInfos)
 
     @vcr.use_cassette(VCR_STORAGE.format('station_to_station_infos_from_station'))
     def test_station_to_station_from_station(self):
@@ -51,7 +51,7 @@ class TestRequiresStation(TestCase):
             api_key=API_KEY
         )
 
-        self.assertTrue(isinstance(response, responses.StationToStationInfos), response)
+        self.assertIsInstance(response, responses.StationToStationInfos)
 
     @vcr.use_cassette(VCR_STORAGE.format('station_to_station_infos_destination_station'))
     def test_station_to_station_destination_station(self):
@@ -61,7 +61,7 @@ class TestRequiresStation(TestCase):
             api_key=API_KEY
         )
 
-        self.assertTrue(isinstance(response, responses.StationToStationInfos), response)
+        self.assertIsInstance(response, responses.StationToStationInfos)
 
     @vcr.use_cassette(VCR_STORAGE.format('station_to_station_infos_both_stations'))
     def test_station_to_station_both_stations(self):
@@ -71,7 +71,7 @@ class TestRequiresStation(TestCase):
             api_key=API_KEY
         )
 
-        self.assertTrue(isinstance(response, responses.StationToStationInfos), response)
+        self.assertIsInstance(response, responses.StationToStationInfos)
 
     @vcr.use_cassette(VCR_STORAGE.format('elevator_and_escalator_incidents'))
     def test_elevator_and_escalator_incidents(self):
@@ -80,7 +80,7 @@ class TestRequiresStation(TestCase):
             api_key=API_KEY
         )
 
-        self.assertTrue(isinstance(response, responses.ElevatorAndEscalatorIncidents), response)
+        self.assertIsInstance(response, responses.ElevatorAndEscalatorIncidents)
 
     @vcr.use_cassette(VCR_STORAGE.format('elevator_and_escalator_incidents_A01'))
     def test_elevator_and_escalator_incidents_at_metro_center(self):
@@ -89,6 +89,22 @@ class TestRequiresStation(TestCase):
             api_key=API_KEY
         )
 
-        self.assertTrue(isinstance(response, responses.ElevatorAndEscalatorIncidents), response)
+        self.assertIsInstance(response, responses.ElevatorAndEscalatorIncidents)
 
+    @vcr.use_cassette(VCR_STORAGE.format('rail_incidents'))
+    def test_rail_incidents(self):
+        response = self.requires_station.incidents_at(
+            station=None,
+            api_key=API_KEY
+        )
 
+        self.assertIsInstance(response, responses.RailIncidents)
+
+    @vcr.use_cassette(VCR_STORAGE.format('rail_incidents_at_station'))
+    def test_rail_incidents_at_station(self):
+        response = self.requires_station.incidents_at(
+            station=station.Station["A01"],
+            api_key=API_KEY
+        )
+
+        self.assertIsInstance(response, responses.RailIncidents)

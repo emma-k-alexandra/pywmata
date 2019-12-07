@@ -62,7 +62,12 @@ class Stations(Response):
     stations: List[StationResponse]
 
     def __init__(self, json: Dict[str, Any]):
-        self.stations = [StationResponse(station_json) for station_json in json["Stations"]]
+        self.stations = list(
+            map(
+                StationResponse,
+                json["Stations"]
+            )
+        )
 
 
 class RailFare(Response):
@@ -89,11 +94,12 @@ class StationToStationInfos(Response):
     station_to_station_infos: List[StationToStationInfo]
 
     def __init__(self, json: Dict[str, Any]):
-        self.station_to_station_infos = [
-            StationToStationInfo(station_to_station_info_json) 
-            for station_to_station_info_json 
-            in json["StationToStationInfos"]
-        ]
+        self.station_to_station_infos = list(
+            map(
+                StationToStationInfo, 
+                json["StationToStationInfos"]
+            )
+        )
 
 class ElevatorAndEscalatorIncident(Response):
     unit_name: str
@@ -129,8 +135,32 @@ class ElevatorAndEscalatorIncidents(Response):
     incidents: List[ElevatorAndEscalatorIncident]
 
     def __init__(self, json: Dict[str, Any]):
-        self.incidents = [
-            ElevatorAndEscalatorIncident(elevator_and_escalator_incident_json)
-            for elevator_and_escalator_incident_json
-            in json["ElevatorIncidents"]
-        ]
+        self.incidents = list(
+            map(
+                ElevatorAndEscalatorIncident, 
+                json["ElevatorIncidents"]
+            )
+        )
+
+class RailIncident(Response):
+    incident_id: str
+    description: str
+    start_location_full_name: Optional[str]
+    end_location_full_name: Optional[str]
+    passenger_delay: float
+    delay_serverity: Optional[str]
+    incident_type: str
+    emergency_text: Optional[str]
+    lines_affected: str
+    date_updated: datetime
+
+    def __init__(self, json: Dict[str, Any]):
+        super().__init__(json)
+
+        self.date_updated = string_to_datetime(json["DateUpdated"])
+
+class RailIncidents(Response):
+    incidents: List[RailIncident]
+
+    def __init__(self, json: Dict[str, Any]):
+        self.incidents = list(map(RailIncident, json["Incidents"]))
