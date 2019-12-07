@@ -164,3 +164,26 @@ class RailIncidents(Response):
 
     def __init__(self, json: Dict[str, Any]):
         self.incidents = list(map(RailIncident, json["Incidents"]))
+
+class RailPrediction(Response):
+    car: Optional[str]
+    destination: str
+    destination_station: Optional[Station]
+    destination_name: str
+    group: str
+    line: str
+    location: Station
+    location_name: str
+    minutes: str
+
+    def __init__(self, json: Dict[str, Any]):
+        super().__init__(json)
+
+        self.destination_station = get_optional_station(json["DestinationCode"])
+        self.location = Station[json["LocationCode"]]
+
+class RailPredictions(Response):
+    trains: List[RailPrediction]
+
+    def __init__(self, json: Dict[str, Any]):
+        self.trains = list(map(RailPrediction, json["Trains"]))

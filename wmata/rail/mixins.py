@@ -106,3 +106,21 @@ class RequiresStation(Fetcher):
             api_key=api_key,
             output_class=responses.RailIncidents
         )
+
+    def next_trains(self, station: Station, api_key: str) -> Union[responses.RailPredictions, WMATAError]:
+        """Next train arrivals for the given station.
+        WMATA Documentation https://developer.wmata.com/docs/services/547636a6f9182302184cda78/operations/547636a6f918230da855363f
+        
+        Arguments:
+            station {Station} -- Station to get next trains at
+            api_key {str} -- WMATA API Key
+        
+        Returns:
+            Union[responses.RailPredictions, WMATAError]
+        """
+        return self.fetch(
+            '/'.join([URLs.NextTrains.value, station.value]),
+            params={},
+            api_key=api_key,
+            output_class=responses.RailPredictions
+        )

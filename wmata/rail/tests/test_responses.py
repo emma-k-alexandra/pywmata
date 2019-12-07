@@ -212,3 +212,34 @@ class TestResponses(TestCase):
 
         self.assertIsInstance(rail_incidents.incidents[0], responses.RailIncident)
 
+    def test_rail_prediction(self):
+        rail_prediction = responses.RailPrediction({
+            "Car": "8",
+            "Destination": "Glenmont",
+            "DestinationCode": "B11",
+            "DestinationName": "Glenmont",
+            "Group": "1",
+            "Line": "RD",
+            "LocationCode": "B03",
+            "LocationName": "Union Station",
+            "Min": "3"
+        })
+
+        self.assertIsInstance(rail_prediction.destination_station, station.Station)
+
+    def test_rail_predictions(self):
+        rail_predictions = responses.RailPredictions({
+            "Trains": [{
+                "Car": "8",
+                "Destination": "Glenmont",
+                "DestinationCode": "B11",
+                "DestinationName": "Glenmont",
+                "Group": "1",
+                "Line": "RD",
+                "LocationCode": "B03",
+                "LocationName": "Union Station",
+                "Min": "3"
+            }]})
+
+        self.assertIsInstance(rail_predictions.trains[0], responses.RailPrediction)
+
