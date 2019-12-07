@@ -242,3 +242,23 @@ class StationsParking(Response):
 
     def __init__(self, json: Dict[str, Any]):
         self.stations_parking = list(map(StationParking, json["StationsParking"]))
+
+class Path(Response):
+    distance_to_previous_station: int
+    line: Line
+    sequence_number: int
+    station: Station
+    station_name: str
+
+    def __init__(self, json: Dict[str, Any]):
+        super().__init__(json)
+
+        self.line = Line[json["LineCode"]]
+        self.sequence_number = json["SeqNum"]
+        self.station = Station[json["StationCode"]]
+
+class PathBetweenStations(Response):
+    path: List[Path]
+
+    def __init__(self, json: Dict[str, Any]):
+        self.path = list(map(Path, json["Path"]))

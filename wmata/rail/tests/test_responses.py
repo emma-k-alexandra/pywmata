@@ -1,8 +1,7 @@
 from unittest import TestCase
 from datetime import datetime
 
-from wmata.rail import responses, station
-from wmata.rail import station
+from wmata.rail import responses, station, line
 
 class TestResponses(TestCase):
     def test_address(self):
@@ -325,4 +324,30 @@ class TestResponses(TestCase):
         })
 
         self.assertIsInstance(stations_parking.stations_parking[0], responses.StationParking)
+
+    def test_path(self):
+        path = responses.Path({
+            "DistanceToPrev": 0,
+            "LineCode": "SV",
+            "SeqNum": 1,
+            "StationCode": "N06",
+            "StationName": "Wiehle-Reston East"
+        })
+
+        self.assertEqual(path.line, line.Line["SV"])
+
+    def test_path_between_stations(self):
+        path_between_stations = responses.PathBetweenStations({
+            "Path": [
+                {
+                    "DistanceToPrev": 0,
+                    "LineCode": "SV",
+                    "SeqNum": 1,
+                    "StationCode": "N06",
+                    "StationName": "Wiehle-Reston East"
+                }
+            ]
+        })
+
+        self.assertIsInstance(path_between_stations.path[0], responses.Path)
 

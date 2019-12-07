@@ -159,3 +159,24 @@ class RequiresStation(Fetcher):
             api_key=api_key,
             output_class=responses.StationsParking
         )
+
+    def path_from(self, station: Station, destination_station: Station, api_key: str) -> Union[responses.PathBetweenStations, WMATAError]:
+        """Set of ordered stations and distances between two stations on the **same line**.
+        
+        Arguments:
+            station {Station} -- Starting station
+            destination_station {Station} -- Ending station
+            api_key {str} -- WMATA API Key
+        
+        Returns:
+            Union[responses.PathBetweenStations, WMATAError]
+        """
+        return self.fetch(
+            URLs.Path.value,
+            params={
+                "FromStationCode": station.value,
+                "ToStationCode": destination_station.value
+            },
+            api_key=api_key,
+            output_class=responses.PathBetweenStations
+        )
