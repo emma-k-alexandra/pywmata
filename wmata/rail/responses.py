@@ -262,3 +262,53 @@ class PathBetweenStations(Response):
 
     def __init__(self, json: Dict[str, Any]):
         self.path = list(map(Path, json["Path"]))
+
+class TrainTime(Response):
+    time: str
+    destination: Station
+
+    def __init__(self, json: Dict[str, Any]):
+        super().__init__(json)
+
+        self.destination = Station[json["DestinationStation"]]
+
+class StationFirstLastTrains(Response):
+    opening_time: str
+    first_trains: List[TrainTime]
+    last_trains: List[TrainTime]
+
+    def __init__(self, json: Dict[str, Any]):
+        super().__init__(json)
+
+        self.first_trains = list(map(TrainTime, json["FirstTrains"]))
+        self.last_trains = list(map(TrainTime, json["LastTrains"]))
+
+class StationTime(Response):
+    station: Station
+    station_name: str
+    # You're gonna love this
+    monday: StationFirstLastTrains
+    tuesday: StationFirstLastTrains
+    wednesday: StationFirstLastTrains
+    thursday: StationFirstLastTrains
+    friday: StationFirstLastTrains
+    saturday: StationFirstLastTrains
+    sunday: StationFirstLastTrains
+
+    def __init__(self, json: Dict[str, Any]):
+        super().__init__(json)
+
+        self.station = Station[json["Code"]]
+        self.monday = StationFirstLastTrains(json["Monday"])
+        self.tuesday = StationFirstLastTrains(json["Tuesday"])
+        self.wednesday = StationFirstLastTrains(json["Wednesday"])
+        self.thursday = StationFirstLastTrains(json["Thursday"])
+        self.friday = StationFirstLastTrains(json["Friday"])
+        self.saturday = StationFirstLastTrains(json["Saturday"])
+        self.sunday = StationFirstLastTrains(json["Sunday"])
+
+class StationTimings(Response):
+    station_times: List[StationTime]
+
+    def __init__(self, json: Dict[str, Any]):
+        self.station_times = list(map(StationTime, json["StationTimes"]))

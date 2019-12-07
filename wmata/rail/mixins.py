@@ -180,3 +180,20 @@ class RequiresStation(Fetcher):
             api_key=api_key,
             output_class=responses.PathBetweenStations
         )
+
+    def timings(self, station: Station, api_key: str) -> Union[responses.StationTimings, WMATAError]:
+        """Opening and scheduled first/last train times for the given station.
+        
+        Arguments:
+            station {Station} -- Station to get schedule for
+            api_key {str} -- WMATA API Key
+        
+        Returns:
+            Union[responses.StationTimings, WMATAError]
+        """
+        return self.fetch(
+            URLs.Timings.value,
+            params={"StationCode": station.value},
+            api_key=api_key,
+            output_class=responses.StationTimings
+        )

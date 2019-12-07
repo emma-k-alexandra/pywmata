@@ -351,3 +351,259 @@ class TestResponses(TestCase):
 
         self.assertIsInstance(path_between_stations.path[0], responses.Path)
 
+    def test_train_time(self):
+        train_time = responses.TrainTime({
+            "Time": "05:00",
+            "DestinationStation": "F11"
+        })
+
+        self.assertEqual(train_time.destination, station.Station["F11"])
+
+    def test_station_first_last_trains(self):
+        station_first_last_trains = responses.StationFirstLastTrains({
+            "OpeningTime": "04:50",
+            "FirstTrains": [
+                {
+                    "Time": "05:00",
+                    "DestinationStation": "F11"
+                }
+            ],
+            "LastTrains": [
+                {
+                    "Time": "23:30",
+                    "DestinationStation": "F11"
+                }
+            ]
+        })
+
+        self.assertIsInstance(station_first_last_trains.first_trains[0], responses.TrainTime)
+
+    def test_station_time(self):
+        station_time = responses.StationTime({
+            "Code": "E10",
+            "StationName": "Greenbelt",
+            "Monday": {
+                "OpeningTime": "04:50",
+                "FirstTrains": [
+                    {
+                        "Time": "05:00",
+                        "DestinationStation": "F11"
+                    }
+                ],
+                "LastTrains": [
+                    {
+                        "Time": "23:30",
+                        "DestinationStation": "F11"
+                    }
+                ]
+            },
+            "Tuesday": {
+                "OpeningTime": "04:50",
+                "FirstTrains": [
+                    {
+                        "Time": "05:00",
+                        "DestinationStation": "F11"
+                    }
+                ],
+                "LastTrains": [
+                    {
+                        "Time": "23:30",
+                        "DestinationStation": "F11"
+                    }
+                ]
+            },
+            "Wednesday": {
+                "OpeningTime": "04:50",
+                "FirstTrains": [
+                    {
+                        "Time": "05:00",
+                        "DestinationStation": "F11"
+                    }
+                ],
+                "LastTrains": [
+                    {
+                        "Time": "23:30",
+                        "DestinationStation": "F11"
+                    }
+                ]
+            },
+            "Thursday": {
+                "OpeningTime": "04:50",
+                "FirstTrains": [
+                    {
+                        "Time": "05:00",
+                        "DestinationStation": "F11"
+                    }
+                ],
+                "LastTrains": [
+                    {
+                        "Time": "23:30",
+                        "DestinationStation": "F11"
+                    }
+                ]
+            },
+            "Friday": {
+                "OpeningTime": "04:50",
+                "FirstTrains": [
+                    {
+                        "Time": "05:00",
+                        "DestinationStation": "F11"
+                    }
+                ],
+                "LastTrains": [
+                    {
+                        "Time": "02:30",
+                        "DestinationStation": "F11"
+                    }
+                ]
+            },
+            "Saturday": {
+                "OpeningTime": "06:50",
+                "FirstTrains": [
+                    {
+                        "Time": "07:00",
+                        "DestinationStation": "F11"
+                    }
+                ],
+                "LastTrains": [
+                    {
+                        "Time": "02:30",
+                        "DestinationStation": "F11"
+                    }
+                ]
+            },
+            "Sunday": {
+                "OpeningTime": "06:50",
+                "FirstTrains": [
+                    {
+                        "Time": "07:00",
+                        "DestinationStation": "F11"
+                    }
+                ],
+                "LastTrains": [
+                    {
+                        "Time": "23:30",
+                        "DestinationStation": "F11"
+                    }
+                ]
+            }
+        })
+
+        self.assertIsInstance(station_time.monday, responses.StationFirstLastTrains)
+
+    def test_station_timings(self):
+        station_timings = responses.StationTimings({
+            "StationTimes": [
+                {
+                    "Code": "E10",
+                    "StationName": "Greenbelt",
+                    "Monday": {
+                        "OpeningTime": "04:50",
+                        "FirstTrains": [
+                            {
+                                "Time": "05:00",
+                                "DestinationStation": "F11"
+                            }
+                        ],
+                        "LastTrains": [
+                            {
+                                "Time": "23:30",
+                                "DestinationStation": "F11"
+                            }
+                        ]
+                    },
+                    "Tuesday": {
+                        "OpeningTime": "04:50",
+                        "FirstTrains": [
+                            {
+                                "Time": "05:00",
+                                "DestinationStation": "F11"
+                            }
+                        ],
+                        "LastTrains": [
+                            {
+                                "Time": "23:30",
+                                "DestinationStation": "F11"
+                            }
+                        ]
+                    },
+                    "Wednesday": {
+                        "OpeningTime": "04:50",
+                        "FirstTrains": [
+                            {
+                                "Time": "05:00",
+                                "DestinationStation": "F11"
+                            }
+                        ],
+                        "LastTrains": [
+                            {
+                                "Time": "23:30",
+                                "DestinationStation": "F11"
+                            }
+                        ]
+                    },
+                    "Thursday": {
+                        "OpeningTime": "04:50",
+                        "FirstTrains": [
+                            {
+                                "Time": "05:00",
+                                "DestinationStation": "F11"
+                            }
+                        ],
+                        "LastTrains": [
+                            {
+                                "Time": "23:30",
+                                "DestinationStation": "F11"
+                            }
+                        ]
+                    },
+                    "Friday": {
+                        "OpeningTime": "04:50",
+                        "FirstTrains": [
+                            {
+                                "Time": "05:00",
+                                "DestinationStation": "F11"
+                            }
+                        ],
+                        "LastTrains": [
+                            {
+                                "Time": "02:30",
+                                "DestinationStation": "F11"
+                            }
+                        ]
+                    },
+                    "Saturday": {
+                        "OpeningTime": "06:50",
+                        "FirstTrains": [
+                            {
+                                "Time": "07:00",
+                                "DestinationStation": "F11"
+                            }
+                        ],
+                        "LastTrains": [
+                            {
+                                "Time": "02:30",
+                                "DestinationStation": "F11"
+                            }
+                        ]
+                    },
+                    "Sunday": {
+                        "OpeningTime": "06:50",
+                        "FirstTrains": [
+                            {
+                                "Time": "07:00",
+                                "DestinationStation": "F11"
+                            }
+                        ],
+                        "LastTrains": [
+                            {
+                                "Time": "23:30",
+                                "DestinationStation": "F11"
+                            }
+                        ]
+                    }
+                }
+            ]
+        })
+
+        self.assertIsInstance(station_timings.station_times[0], responses.StationTime)

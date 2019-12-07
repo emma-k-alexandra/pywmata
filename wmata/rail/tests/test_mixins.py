@@ -135,3 +135,12 @@ class TestRequiresStation(TestCase):
         )
 
         self.assertIsInstance(response, responses.StationsParking)
+
+    @vcr.use_cassette(VCR_STORAGE.format('timings'))
+    def test_timings(self):
+        response = self.requires_station.timings(
+            station=station.Station["A01"],
+            api_key=API_KEY
+        )
+
+        self.assertIsInstance(response, responses.StationTimings)
