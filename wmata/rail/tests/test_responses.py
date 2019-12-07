@@ -265,3 +265,64 @@ class TestResponses(TestCase):
 
         self.assertIsInstance(station_information.first_station_together, station.Station)
 
+    def test_short_term_parking(self):
+        short_term_parking = responses.ShortTermParking({
+            "TotalCount": 15,
+            "Notes": "Short term parking available 5 am - 2 am, time limit 12 hours"
+        })
+
+        self.assertEqual(short_term_parking.total_count, 15)
+
+    def test_all_day_parking(self):
+        all_day_parking = responses.AllDayParking({
+            "TotalCount": 808,
+            "RiderCost": 4.45,
+            "NonRiderCost": 4.45,
+            "SaturdayRiderCost": 2,
+            "SaturdayNonRiderCost": 2,
+        })
+
+        self.assertEqual(all_day_parking.total_count, 808)
+
+    def test_station_parking(self):
+        station_parking = responses.StationParking({
+            "Code": "F06",
+            "Notes": "325 spaces metered for 12-hr. max. @ $1.00 per 60 mins.",
+            "AllDayParking": {
+                "TotalCount": 808,
+                "RiderCost": 4.45,
+                "NonRiderCost": 4.45,
+                "SaturdayRiderCost": 2,
+                "SaturdayNonRiderCost": 2,
+            },
+            "ShortTermParking": {
+                "TotalCount": 15,
+                "Notes": "Short term parking available 5 am - 2 am, time limit 12 hours"
+            }
+        })
+
+        self.assertIsInstance(station_parking.all_day_parking, responses.AllDayParking)
+
+    def test_stations_parking(self):
+        stations_parking = responses.StationsParking({
+            "StationsParking": [
+                {
+                    "Code": "F06",
+                    "Notes": "325 spaces metered for 12-hr. max. @ $1.00 per 60 mins.",
+                    "AllDayParking": {
+                        "TotalCount": 808,
+                        "RiderCost": 4.45,
+                        "NonRiderCost": 4.45,
+                        "SaturdayRiderCost": 2,
+                        "SaturdayNonRiderCost": 2,
+                    },
+                    "ShortTermParking": {
+                        "TotalCount": 15,
+                        "Notes": "Short term parking available 5 am - 2 am, time limit 12 hours"
+                    }
+                }
+            ]
+        })
+
+        self.assertIsInstance(stations_parking.stations_parking[0], responses.StationParking)
+

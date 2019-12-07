@@ -212,3 +212,33 @@ class StationInformation(Response):
         self.fourth_line = get_optional_line(json["LineCode4"])
         self.first_station_together = get_optional_station(json["StationTogether1"])
         self.second_station_together = get_optional_station(json["StationTogether2"])
+
+class ShortTermParking(Response):
+    total_count: int
+    notes: str
+
+class AllDayParking(Response):
+    total_count: int
+    rider_cost: Optional[float]
+    non_rider_cost: Optional[float]
+    saturday_rider_cost: Optional[float]
+    saturday_non_rider_cost: Optional[float]
+
+class StationParking(Response):
+    station: Station
+    notes: Optional[str]
+    all_day_parking: AllDayParking
+    short_term_parking: ShortTermParking
+
+    def __init__(self, json: Dict[str, Any]):
+        super().__init__(json)
+
+        self.station = Station[json["Code"]]
+        self.all_day_parking = AllDayParking(json["AllDayParking"])
+        self.short_term_parking = ShortTermParking(json["ShortTermParking"])
+
+class StationsParking(Response):
+    stations_parking: List[StationParking]
+
+    def __init__(self, json: Dict[str, Any]):
+        self.stations_parking = list(map(StationParking, json["StationsParking"]))

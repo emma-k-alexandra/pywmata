@@ -142,3 +142,20 @@ class RequiresStation(Fetcher):
             api_key=api_key,
             output_class=responses.StationInformation
         )
+
+    def parking_information(self, station: Station, api_key: str) -> Union[responses.StationsParking, WMATAError]:
+        """Parking information for the given station.
+        
+        Arguments:
+            station {Station} -- Station to get parking information for
+            api_key {str} -- WMATA API Key
+        
+        Returns:
+            Union[responses.StationsParking, WMATAError]
+        """
+        return self.fetch(
+            URLs.ParkingInformation.value,
+            params={"StationCode": station.value},
+            api_key=api_key,
+            output_class=responses.StationsParking
+        )
