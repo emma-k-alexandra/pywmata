@@ -760,5 +760,34 @@ class TestResponses(TestCase):
 
         self.assertIsInstance(train_positions.train_positions[0], responses.TrainPosition)
 
+    def test_track_circuit_with_station(self):
+        track_circuit_with_station = responses.TrackCircuitWithStation({
+            "SeqNum": 0,
+            "CircuitId": 2603,
+            "StationCode": None
+        })
 
+        self.assertEqual(track_circuit_with_station.sequence_number, 0)
+
+    def test_standard_route(self):
+        standard_route = responses.StandardRoute({
+            "LineCode": "YLRP",
+            "TrackNum": 2,
+            "TrackCircuits": []
+        })
+
+        self.assertEqual(standard_route.line, line.Line["YLRP"])
+
+    def test_standard_routes(self):
+        standard_routes = responses.StandardRoutes({
+            "StandardRoutes": [
+                {
+                    "LineCode": "YLRP",
+                    "TrackNum": 2,
+                    "TrackCircuits": []
+                }
+            ]
+        })
+
+        self.assertIsInstance(standard_routes.standard_routes[0], responses.StandardRoute)
     

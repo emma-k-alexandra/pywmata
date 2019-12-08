@@ -115,3 +115,17 @@ class MetroRail(mixins.RequiresLine, mixins.RequiresStation):
             api_key=self.key,
             output_class=responses.TrainPositions
         )
+
+    def routes(self) -> Union[responses.StandardRoutes, WMATAError]:
+        """Returns an ordered list of mostly revenue (and some lead) track circuits, arranged by line and track number.
+        WMATA Documentation https://developer.wmata.com/docs/services/5763fa6ff91823096cac1057/operations/57641afc031f59363c586dca?
+        
+        Returns:
+            Union[responses.StandardRoutes, WMATAError]
+        """
+        return self.fetch(
+            urls.URLs.Routes.value,
+            params={"contentType": "json"},
+            api_key=self.key,
+            output_class=responses.StandardRoutes
+        )

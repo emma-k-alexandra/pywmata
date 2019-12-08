@@ -346,6 +346,8 @@ class StationEntrance(Response):
     second_station: Optional[Station]
 
     def __init__(self, json: Dict[str, Any]):
+        super().__init__(json)
+
         self.identifier = json["ID"]
         self.latitude = json["Lat"]
         self.longitude = json["Lon"]
@@ -370,6 +372,8 @@ class TrainPosition(Response):
     service_type: str
 
     def __init__(self, json: Dict[str, Any]):
+        super().__init__(json)
+
         self.direction_number = json["DirectionNum"]
 
         self.destination_station = get_optional_station(json["DestinationStationCode"])
@@ -380,3 +384,28 @@ class TrainPositions(Response):
 
     def __init__(self, json: Dict[str, Any]):
         self.train_positions = list(map(TrainPosition, json["TrainPositions"]))
+
+class TrackCircuitWithStation(Response):
+    sequence_number: int
+    circuit_id: int
+    station: Optional[Station]
+
+    def __init__(self, json: Dict[str, Any]):
+        self.sequence_number = json["SeqNum"]
+        self.station = get_optional_station(json["StationCode"])
+
+class StandardRoute(Response):
+    line: Line
+    track_number: int
+    track_circuits: List[TrackCircuitWithStation]
+
+    def __init__(self, json: Dict[str, Any]):
+        self.line = Line[json["LineCode"]]
+        self.track_number = json["TrackNum"]
+        self.track_circuits = list(map(TrackCircuitWithStation, json["TrackCircuits"]))
+
+class StandardRoutes(Response):
+    standard_routes: List[StandardRoute]
+
+    def __init__(self, json: Dict[str, Any]):
+        self.standard_routes = list(map(StandardRoute, json["StandardRoutes"]))
