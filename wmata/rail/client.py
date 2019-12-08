@@ -2,7 +2,7 @@
 """
 import functools
 from typing import Optional, Callable, Union
-from . import mixins, responses, line, station
+from . import mixins, responses, line, station, urls
 from ..error import WMATAError
 
 class MetroRail(mixins.RequiresLine, mixins.RequiresStation):
@@ -68,4 +68,18 @@ class MetroRail(mixins.RequiresLine, mixins.RequiresStation):
         self.timings = functools.partial(
             self.timings,
             api_key=self.key
+        )
+
+    def lines(self) -> Union[responses.Lines, WMATAError]:
+        """Basic information on all MetroRail lines.
+        WMATA Documentation https://developer.wmata.com/docs/services/5476364f031f590f38092507/operations/5476364f031f5909e4fe330c
+        
+        Returns:
+            Union[responses.Lines, WMATAError]
+        """
+        self.fetch(
+            urls.URLs.Lines.value,
+            params={},
+            api_key=self.key,
+            output_class=responses.Lines
         )

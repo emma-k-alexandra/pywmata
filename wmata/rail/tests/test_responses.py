@@ -607,3 +607,72 @@ class TestResponses(TestCase):
         })
 
         self.assertIsInstance(station_timings.station_times[0], responses.StationTime)
+    
+    def test_line_response(self):
+        line_response = responses.LineResponse({
+            "DisplayName": "Green",
+            "EndStationCode": "E10",
+            "InternalDestination1": "",
+            "InternalDestination2": "",
+            "LineCode": "GR",
+            "StartStationCode": "F11"
+        })
+
+        self.assertEqual(line_response.end_station, station.Station["E10"])
+
+    def test_lines(self):
+        lines = responses.Lines({
+            "Lines": [
+                {
+                    "DisplayName": "Green",
+                    "EndStationCode": "E10",
+                    "InternalDestination1": "",
+                    "InternalDestination2": "",
+                    "LineCode": "GR",
+                    "StartStationCode": "F11"
+                },
+                {
+                    "DisplayName": "Blue",
+                    "EndStationCode": "G05",
+                    "InternalDestination1": "",
+                    "InternalDestination2": "",
+                    "LineCode": "BL",
+                    "StartStationCode": "J03"
+                },
+                {
+                    "DisplayName": "Silver",
+                    "EndStationCode": "G05",
+                    "InternalDestination1": "",
+                    "InternalDestination2": "",
+                    "LineCode": "SV",
+                    "StartStationCode": "N06"
+                },
+                {
+                    "DisplayName": "Red",
+                    "EndStationCode": "B11",
+                    "InternalDestination1": "A11",
+                    "InternalDestination2": "B08",
+                    "LineCode": "RD",
+                    "StartStationCode": "A15"
+                },
+                {
+                    "DisplayName": "Orange",
+                    "EndStationCode": "D13",
+                    "InternalDestination1": "",
+                    "InternalDestination2": "",
+                    "LineCode": "OR",
+                    "StartStationCode": "K08"
+                },
+                {
+                    "DisplayName": "Yellow",
+                    "EndStationCode": "E06",
+                    "InternalDestination1": "E01",
+                    "InternalDestination2": "",
+                    "LineCode": "YL",
+                    "StartStationCode": "C15"
+                }
+            ]
+        })
+
+        self.assertIsInstance(lines.lines[0], responses.LineResponse)
+        

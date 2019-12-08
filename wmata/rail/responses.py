@@ -312,3 +312,26 @@ class StationTimings(Response):
 
     def __init__(self, json: Dict[str, Any]):
         self.station_times = list(map(StationTime, json["StationTimes"]))
+
+class LineResponse(Response):
+    line: Line
+    display_name: str
+    start_station: Station
+    end_station: Station
+    first_internal_destination: Optional[Station]
+    second_internal_destination: Optional[Station]
+
+    def __init__(self, json: Dict[str, Any]):
+        super().__init__(json)
+
+        self.line = Line[json["LineCode"]]
+        self.start_station = Station[json["StartStationCode"]]
+        self.end_station = Station[json["EndStationCode"]]
+        self.first_internal_destination = get_optional_station(json["InternalDestination1"])
+        self.second_internal_destination = get_optional_station(json["InternalDestination2"])
+
+class Lines(Response):
+    lines: List[LineResponse]
+
+    def __init__(self, json: Dict[str, Any]):
+        self.lines = list(map(LineResponse, json["Lines"]))
