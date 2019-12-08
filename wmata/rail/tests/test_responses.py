@@ -675,4 +675,42 @@ class TestResponses(TestCase):
         })
 
         self.assertIsInstance(lines.lines[0], responses.LineResponse)
-        
+
+    def test_station_entrance(self):
+        station_entrance = responses.StationEntrance({
+            "Description": "Farragut West, 17th & I St",
+            "ID": "100",
+            "Lat": 38.901098,
+            "Lon": -77.039293,
+            "Name": "Farragut West 17th & I St",
+            "StationCode1": "C03",
+            "StationCode2": ""
+        })
+
+        self.assertEqual(station_entrance.first_station, station.Station["C03"])
+
+    def test_station_entrances(self):
+        station_entrances = responses.StationEntrances({
+            "Entrances": [
+                {
+                    "Description": "Farragut West, 17th & I St",
+                    "ID": "100",
+                    "Lat": 38.901098,
+                    "Lon": -77.039293,
+                    "Name": "Farragut West 17th & I St",
+                    "StationCode1": "C03",
+                    "StationCode2": ""
+                },
+                {
+                    "Description": "Farragut West, 18th & I St",
+                    "ID": "101",
+                    "Lat": 38.901453,
+                    "Lon": -77.042093,
+                    "Name": "Farragut West 18th & I St",
+                    "StationCode1": "C03",
+                    "StationCode2": ""
+                }
+            ]
+        })
+
+        self.assertIsInstance(station_entrances.entrances[0], responses.StationEntrance)

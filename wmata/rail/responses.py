@@ -335,3 +335,25 @@ class Lines(Response):
 
     def __init__(self, json: Dict[str, Any]):
         self.lines = list(map(LineResponse, json["Lines"]))
+
+class StationEntrance(Response):
+    description: str
+    identifier: str
+    latitude: float
+    longitude: float
+    name: str
+    first_station: Station
+    second_station: Optional[Station]
+
+    def __init__(self, json: Dict[str, Any]):
+        self.identifier = json["ID"]
+        self.latitude = json["Lat"]
+        self.longitude = json["Lon"]
+        self.first_station = Station[json["StationCode1"]]
+        self.second_station = get_optional_station(json["StationCode2"])
+
+class StationEntrances(Response):
+    entrances: List[StationEntrance]
+
+    def __init__(self, json: Dict[str, Any]):
+        self.entrances = list(map(StationEntrance, json["Entrances"]))

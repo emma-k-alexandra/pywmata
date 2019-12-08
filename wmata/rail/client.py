@@ -4,6 +4,7 @@ import functools
 from typing import Optional, Callable, Union
 from . import mixins, responses, line, station, urls
 from ..error import WMATAError
+from ..location import RadiusAtCoordinates
 
 class MetroRail(mixins.RequiresLine, mixins.RequiresStation):
     """Main object for interacting with MetroRail API methods
@@ -82,4 +83,21 @@ class MetroRail(mixins.RequiresLine, mixins.RequiresStation):
             params={},
             api_key=self.key,
             output_class=responses.Lines
+        )
+
+    def entrances(self, radiusAtCoordinates: RadiusAtCoordinates) -> Union[responses.StationEntrances, WMATAError]:
+        """Nearby station entrances based on latitude, longitude, and radius (meters).
+        WMATA Documentation https://developer.wmata.com/docs/services/5476364f031f590f38092507/operations/5476364f031f5909e4fe330f?
+
+        Arguments:
+            radiusAtCoordinates {RadiusAtCoordinates} -- Area to search for entrances within
+        
+        Returns:
+            Union[responses.StationEntrances, WMATAError]
+        """
+        return self.fetch(
+            urls.URLs.Entrances.value,
+            params=radiusAtCoordinates.to_dict(),
+            api_key=self.key,
+            output_class=responses.StationEntrances
         )
