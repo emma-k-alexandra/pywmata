@@ -2,9 +2,10 @@ from unittest import TestCase
 import vcr
 
 from wmata.rail import mixins, responses, line, station
+from .utils import VCR_STORAGE
+from ...tests.utils import API_KEY
 
-API_KEY = "9e38c3eab34c4e6c990828002828f5ed"
-VCR_STORAGE = "wmata/rail/tests/fixtures/{}.yaml"
+
 
 class TestRequiresLine(TestCase):
     def setUp(self):
@@ -17,7 +18,7 @@ class TestRequiresLine(TestCase):
             api_key=API_KEY
         )
 
-        self.assertTrue(isinstance(response, responses.Stations), response)
+        self.assertIsInstance(response, responses.Stations)
 
     @vcr.use_cassette(VCR_STORAGE.format('stations_on_blue_line'))
     def test_stations_on_blue_line(self):

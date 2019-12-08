@@ -66,7 +66,7 @@ class MetroRail(mixins.RequiresLine, mixins.RequiresStation):
         )
 
         self.timings = functools.partial(
-            self.timings,
+            self._timings,
             api_key=self.key
         )
 
@@ -77,7 +77,7 @@ class MetroRail(mixins.RequiresLine, mixins.RequiresStation):
         Returns:
             Union[responses.Lines, WMATAError]
         """
-        self.fetch(
+        return self.fetch(
             urls.URLs.Lines.value,
             params={},
             api_key=self.key,
