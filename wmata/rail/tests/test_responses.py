@@ -790,4 +790,44 @@ class TestResponses(TestCase):
         })
 
         self.assertIsInstance(standard_routes.standard_routes[0], responses.StandardRoute)
+
+    def test_track_neighbor(self):
+        track_neighbor = responses.TrackNeighbor({
+            "NeighborType": "Right",
+            "CircuitIds": [4, 3]
+        })
+
+        self.assertEqual(track_neighbor.circuit_ids, [4, 3])
+
+    def test_track_circuit(self):
+        track_circuit = responses.TrackCircuit({
+            "Track": 2,
+            "CircuitId": 8,
+            "Neighbors": [
+                {
+                    "NeighborType": "Right",
+                    "CircuitIds": [4, 3]
+                }
+            ]
+        })
+
+        self.assertIsInstance(track_circuit.neighbors[0], responses.TrackNeighbor)
+
+    def test_track_circuits(self):
+        track_circuits = responses.TrackCircuits({
+            "TrackCircuits": [
+                {
+                    "Track": 2,
+                    "CircuitId": 8,
+                    "Neighbors": [
+                        {
+                            "NeighborType": "Right",
+                            "CircuitIds": [4, 3]
+                        }
+                    ]
+                }
+            ]
+        })
+
+        self.assertIsInstance(track_circuits.track_circuits[0], responses.TrackCircuit)
     

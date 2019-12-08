@@ -391,6 +391,8 @@ class TrackCircuitWithStation(Response):
     station: Optional[Station]
 
     def __init__(self, json: Dict[str, Any]):
+        super().__init__(json)
+
         self.sequence_number = json["SeqNum"]
         self.station = get_optional_station(json["StationCode"])
 
@@ -409,3 +411,23 @@ class StandardRoutes(Response):
 
     def __init__(self, json: Dict[str, Any]):
         self.standard_routes = list(map(StandardRoute, json["StandardRoutes"]))
+
+class TrackNeighbor(Response):
+    neighbor_type: str
+    circuit_ids: List[int]
+
+class TrackCircuit(Response):
+    track: int
+    circuit_id: int
+    neighbors: List[TrackNeighbor]
+
+    def __init__(self, json: Dict[str, Any]):
+        super().__init__(json)
+
+        self.neighbors = list(map(TrackNeighbor, json["Neighbors"]))
+
+class TrackCircuits(Response):
+    track_circuits: List[TrackCircuit]
+
+    def __init__(self, json: Dict[str, Any]):
+        self.track_circuits = list(map(TrackCircuit, json["TrackCircuits"]))

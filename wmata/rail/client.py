@@ -129,3 +129,17 @@ class MetroRail(mixins.RequiresLine, mixins.RequiresStation):
             api_key=self.key,
             output_class=responses.StandardRoutes
         )
+
+    def circuits(self) -> Union[responses.TrackCircuits, WMATAError]:
+        """All track circuits including those on pocket tracks and crossovers. Each track circuit may include references to its right and left neighbors.
+        WMATA Documentation https://developer.wmata.com/docs/services/5763fa6ff91823096cac1057/operations/57644238031f59363c586dcb?
+        
+        Returns:
+            Union[responses.TrackCircuits, WMATAError] -- [description]
+        """
+        return self.fetch(
+            urls.URLs.Circuits.value,
+            params={"contentType": "json"},
+            api_key=self.key,
+            output_class=responses.TrackCircuits
+        )

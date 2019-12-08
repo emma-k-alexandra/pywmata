@@ -34,3 +34,8 @@ class TestMetroRail(TestCase):
 
         self.assertIsInstance(response, responses.StandardRoutes)
 
+    @vcr.use_cassette(VCR_STORAGE.format('circuits'))
+    def test_circuits(self):
+        response = self.metroRail.circuits()
+
+        self.assertIsInstance(response, responses.TrackCircuits)
