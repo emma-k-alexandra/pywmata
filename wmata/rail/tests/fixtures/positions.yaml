@@ -1,0 +1,71 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.16.0
+      api_key:
+      - 9e38c3eab34c4e6c990828002828f5ed
+    method: GET
+    uri: https://api.wmata.com/TrainPositions/TrainPositions?contentType=json
+  response:
+    body:
+      string: !!binary |
+        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
+    headers:
+      Arr-Disable-Session-Affinity:
+      - 'True'
+      Cache-Control:
+      - no-store, must-revalidate, no-cache
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '1419'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sun, 08 Dec 2019 15:42:26 GMT
+      Expires:
+      - Sun, 08 Dec 2019 15:42:27 GMT
+      Pragma:
+      - no-cache
+      Vary:
+      - Content-Encoding
+      X-AspNet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+    status:
+      code: 200
+      message: OK
+version: 1

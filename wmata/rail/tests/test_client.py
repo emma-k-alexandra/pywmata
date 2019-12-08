@@ -21,3 +21,10 @@ class TestMetroRail(TestCase):
         response = self.metroRail.entrances(RadiusAtCoordinates(1, Coordinates(1.0, 1.0)))
 
         self.assertIsInstance(response, responses.StationEntrances)
+
+    @vcr.use_cassette(VCR_STORAGE.format('positions'))
+    def test_positions(self):
+        response = self.metroRail.positions()
+
+        self.assertIsInstance(response, responses.TrainPositions)
+

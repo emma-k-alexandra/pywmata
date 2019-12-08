@@ -357,3 +357,26 @@ class StationEntrances(Response):
 
     def __init__(self, json: Dict[str, Any]):
         self.entrances = list(map(StationEntrance, json["Entrances"]))
+
+class TrainPosition(Response):
+    train_id: str
+    train_number: str
+    car_count: int
+    direction_number: int
+    circuit_id: int
+    destination_station: Optional[Station]
+    line: Optional[Line]
+    seconds_at_location: int
+    service_type: str
+
+    def __init__(self, json: Dict[str, Any]):
+        self.direction_number = json["DirectionNum"]
+
+        self.destination_station = get_optional_station(json["DestinationStationCode"])
+        self.line = get_optional_line(json["LineCode"])
+
+class TrainPositions(Response):
+    train_positions: List[TrainPosition]
+
+    def __init__(self, json: Dict[str, Any]):
+        self.train_positions = list(map(TrainPosition, json["TrainPositions"]))

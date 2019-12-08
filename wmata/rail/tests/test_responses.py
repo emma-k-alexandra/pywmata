@@ -714,3 +714,51 @@ class TestResponses(TestCase):
         })
 
         self.assertIsInstance(station_entrances.entrances[0], responses.StationEntrance)
+
+    def test_train_position(self):
+        train_position = responses.TrainPosition({
+            "TrainId": "100",
+            "TrainNumber": "301",
+            "CarCount": 6,
+            "DirectionNum": 1,
+            "CircuitId": 1234,
+            "DestinationStationCode": "A01",
+            "LineCode": "RD",
+            "SecondsAtLocation": 0,
+            "ServiceType": "Normal"    
+        })
+
+        self.assertEqual(train_position.line, line.Line["RD"])
+
+    def test_train_positions(self):
+        train_positions = responses.TrainPositions({
+            "TrainPositions":[
+                {
+                    "TrainId": "100",
+                    "TrainNumber": "301",
+                    "CarCount": 6,
+                    "DirectionNum": 1,
+                    "CircuitId": 1234,
+                    "DestinationStationCode": "A01",
+                    "LineCode": "RD",
+                    "SecondsAtLocation": 0,
+                    "ServiceType": "Normal"    
+                },
+                {
+                    "TrainId": "200",
+                    "TrainNumber": "XY1",
+                    "CarCount": 6,
+                    "DirectionNum": 2,
+                    "CircuitId": 4321,
+                    "DestinationStationCode": None,
+                    "LineCode": None,
+                    "SecondsAtLocation": 25,
+                    "ServiceType": "Special"
+                }
+            ]
+        })
+
+        self.assertIsInstance(train_positions.train_positions[0], responses.TrainPosition)
+
+
+    
