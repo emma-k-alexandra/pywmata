@@ -2,7 +2,6 @@
 """
 from enum import Enum
 
-
 class Line(Enum):
     """A MetroRail Line
     """

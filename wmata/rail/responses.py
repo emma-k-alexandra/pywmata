@@ -48,6 +48,9 @@ class StationResponse(Response):
         self.address = Address(json["Address"])
         self.station = Station[json["Code"]]
 
+        self.latitude = json["Lat"]
+        self.longitude = json["Lon"]
+
         self.first_line = Line[json["LineCode1"]]
 
         self.second_line = get_optional_line(json.get("LineCode2"))
@@ -157,6 +160,7 @@ class RailIncident(Response):
     def __init__(self, json: Dict[str, Any]):
         super().__init__(json)
 
+        self.incident_id = json["IncidentID"]
         self.date_updated = string_to_datetime(json["DateUpdated"])
 
 class RailIncidents(Response):
@@ -181,6 +185,7 @@ class RailPrediction(Response):
 
         self.destination_station = get_optional_station(json["DestinationCode"])
         self.location = Station[json["LocationCode"]]
+        self.minutes = json["Min"]
 
 class RailPredictions(Response):
     trains: List[RailPrediction]
@@ -206,6 +211,8 @@ class StationInformation(Response):
 
         self.address = Address(json["Address"])
         self.station = Station[json["Code"]]
+        self.latitude = json["Lat"]
+        self.longitude = json["Lon"]
         self.first_line = Line[json["LineCode1"]]
         self.second_line = get_optional_line(json["LineCode2"])
         self.third_line = get_optional_line(json["LineCode3"])
@@ -253,6 +260,7 @@ class Path(Response):
     def __init__(self, json: Dict[str, Any]):
         super().__init__(json)
 
+        self.distance_to_previous_station = json["DistanceToPrev"]
         self.line = Line[json["LineCode"]]
         self.sequence_number = json["SeqNum"]
         self.station = Station[json["StationCode"]]
