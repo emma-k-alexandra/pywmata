@@ -4,16 +4,12 @@ import requests.exceptions
 from .error import WMATAError
 
 class Fetcher:
-    def fetch(self, url: str, params: Dict[str, str], api_key: str, output_class: Any, headers: Dict[str, str] = None):
-        headers = headers or {}
-        
-        headers["api_key"] = api_key
-        
+    def fetch(self, url: str, params: Dict[str, str], api_key: str, output_class: Any):
         try:
             response = requests.get(
                 url,
                 params=params,
-                headers=headers
+                headers={"api_key": api_key}
             )
 
         except requests.exceptions.RequestException as error:
