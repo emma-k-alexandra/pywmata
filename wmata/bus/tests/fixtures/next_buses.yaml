@@ -1,0 +1,55 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.16.0
+      api_key:
+      - 9e38c3eab34c4e6c990828002828f5ed
+    method: GET
+    uri: https://api.wmata.com/NextBusService.svc/json/jPredictions?StopID=3003037
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAEAO29B2AcSZYlJi9tynt/SvVK1+B0oQiAYBMk2JBAEOzBiM3mkuwdaUcjKasqgcpl
+        VmVdZhZAzO2dvPfee++999577733ujudTif33/8/XGZkAWz2zkrayZ4hgKrIHz9+fB8/In7xR6/b
+        avUiW+QfPfro8zrPl5O8bNPXbdYW1TL9JH2ybtIn2XX69KPRRy/rfFZM8UXz0aPvff+X/D96QMRX
+        PQAAAA==
+    headers:
+      Arr-Disable-Session-Affinity:
+      - 'True'
+      Cache-Control:
+      - no-store, must-revalidate, no-cache
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '175'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sat, 28 Dec 2019 19:33:59 GMT
+      Expires:
+      - Sat, 28 Dec 2019 19:33:59 GMT
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - ai_session=af6533edc12e4a1a95240b753580c8ff|2019-12-28T19:33:59.5869634+00:00|2019-12-28T19:33:59.6181344+00:00;
+        expires=Sat, 28-Dec-2019 20:03:59 GMT; path=/
+      - ai_user=c02e3797c6d9421a8c7f9e944a14cdf4|2019-12-28T19:33:59.5869634+00:00;
+        expires=Fri, 31-Dec-9999 23:59:59 GMT; path=/
+      Vary:
+      - Accept-Encoding
+      X-AspNet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+    status:
+      code: 200
+      message: OK
+version: 1

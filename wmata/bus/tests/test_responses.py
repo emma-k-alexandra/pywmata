@@ -21,7 +21,7 @@ class TestResponses(TestCase):
 
         self.assertEqual(bus_position.trip_id, "6794838")
 
-    def test_bus_position(self):
+    def test_bus_positions(self):
         bus_positions = responses.BusPositions({
             "BusPositions": [
                 {
