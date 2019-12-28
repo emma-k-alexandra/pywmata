@@ -1,0 +1,58 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.16.0
+      api_key:
+      - 9e38c3eab34c4e6c990828002828f5ed
+    method: GET
+    uri: https://api.wmata.com/Bus.svc/json/jStops?Radius=500&Lat=38.8817596&Lon=-77.0166426
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAEAO29B2AcSZYlJi9tynt/SvVK1+B0oQiAYBMk2JBAEOzBiM3mkuwdaUcjKasqgcpl
+        VmVdZhZAzO2dvPfee++999577733ujudTif33/8/XGZkAWz2zkrayZ4hgKrIHz9+fB8/In7xR6/b
+        atV89Oh78tvZ048efbS7s7Nz/+H9j0YfvcgWOX2w/+bb6es36evvpp+kn8tv9OXzavnRo+0HD8Y7
+        uw/279+nD7L2o0f3DsYHB7v3Dw5GH72q1m0O2B+9/JTav/z0cv+j7/+SUbengwP68tY9ffrpPfrA
+        62lnL9bTXqSnT/f26MtIT6fyG33p97S/85A+sD3d27n3INZTdEyfPqAvIz2dyW/0pd/Tp/uf0gem
+        pwcPHz6M9hQb0/1Pd+nLW/e0/4Dmxevp0539WE/RMd335kmhUz/fPX39/PT3SV8+pz/pe6+zT+/v
+        79IHrrN7+zvxzkYf/eRutEdvvm7V4/59IpzX416cDQE21uO9BwcP6SvtcT/1yPn65Ntffkk9vnl1
+        evqG2ni9Pvh0L2DJ/d2H9Hes116HNESPUXiIn6RfHP9ep1+cndIA6Suvn4MHu76QET13abSun9iI
+        qAP0frsOHu48IMT9Dnbo75s6uLdDULSDe6+eogum2O8lv9GXXhf3d/eIB1wXB3ufEo+4Lgythnji
+        3qefooV2p3JLnT0wU0Vfuu72dvfvE3/b7g7udRji/nG/C1J9XhcKWLQRfewB39vZ8+eDVBHI5wEH
+        m93fo3kfffRgaEA79/c9ltMJkk7pY6+3XXroA9MbeJso6XqLA9/zgH/KUAk8ZoY+dsB3Hx7s+3Si
+        abkfDIXQ7wP/dB+DUuCCMgHXOaFvHPy93YP7hKyFf3Dv01BECL6S5/u/5P8BroQANpMGAAA=
+    headers:
+      Arr-Disable-Session-Affinity:
+      - 'True'
+      Cache-Control:
+      - no-cache
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '680'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sat, 28 Dec 2019 19:49:21 GMT
+      Expires:
+      - '-1'
+      Pragma:
+      - no-cache
+      Vary:
+      - Accept-Encoding
+      X-AspNet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+    status:
+      code: 200
+      message: OK
+version: 1

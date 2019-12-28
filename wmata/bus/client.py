@@ -51,13 +51,13 @@ class MetroBus(mixins.RequiresRoute, mixins.RequiresStop):
         )
 
         self.stop_schedule = functools.partial(
-            self.stop_schedule,
+            self._stop_schedule,
             api_key=self.key
         )
 
     def routes(self) -> Union[responses.Routes, WMATAError]:
         return self.fetch(
-            urls.URLs.Routes,
+            urls.URLs.Routes.value,
             params={},
             api_key=self.key,
             output_class=responses.Routes
@@ -70,7 +70,7 @@ class MetroBus(mixins.RequiresRoute, mixins.RequiresStop):
             params = radius_at_coordinates.to_dict()
 
         return self.fetch(
-            urls.URLs.Stops,
+            urls.URLs.Stops.value,
             params= params,
             api_key=self.key,
             output_class=responses.Stops

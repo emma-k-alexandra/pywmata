@@ -15,6 +15,8 @@ def get_optional_stop(value: Any) -> Optional[Stop]:
     return None
 
 def get_route(route: str) -> Optional[Route]:
+    route = route.replace('*', '_').replace('/', '_')
+
     if route[0] in digits:
         try:
             return Route["_{}".format(route)]
