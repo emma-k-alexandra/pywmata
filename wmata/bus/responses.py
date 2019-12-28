@@ -2,10 +2,27 @@
 """
 from typing import List, Optional, Dict, Any
 from datetime import datetime
+from string import digits
 from .route import Route
 from .stop import Stop
 from ..responses import Response
 from ..date import string_to_datetime
+
+def get_optional_stop(value: Any) -> Optional[Stop]:
+    if value:
+        return Stop(value)
+
+    return None
+
+def get_route(route: str) -> Optional[Route]:
+    if route[0] in digits:
+        try:
+            return Route["_{}".format(route)]
+
+        except KeyError:
+            return None
+
+    return Route[route]
 
 class BusPosition(Response):
     date_time: datetime
@@ -27,7 +44,7 @@ class BusPosition(Response):
         self.direction_number = json["DirectionNum"]
         self.latitude = json["Lat"]
         self.longitude = json["Lon"]
-        self.route = Route[json["RouteID"]]
+        self.route = get_route(json["RouteID"])
         self.trip_end_time = string_to_datetime(json["TripEndTime"])
         self.trip_id = json["TripID"]
         self.trip_start_time = string_to_datetime(json["TripStartTime"])
@@ -57,7 +74,7 @@ class Incident(Response):
 
         self.date_updated = string_to_datetime(json["DateUpdated"])
         self.incident_id = json["IncidentID"]
-        self.routes_affected = [Route[route] for route in json["RoutesAffected"]]
+        self.routes_affected = [get_route(route) for route in json["RoutesAffected"]]
 
 
 class Incidents(Response):
@@ -71,7 +88,7 @@ class Incidents(Response):
             )
         )
 
-class PathStop(Response):
+class PathShape(Response):
     latitude: float
     longitude: float
     sequence_number: int
@@ -80,20 +97,35 @@ class PathStop(Response):
         self.latitude = json["Lat"]
         self.longitude = json["Lon"]
         self.sequence_number = json["SeqNum"]
+
+class StopRoutes(Response):
+    stop: Stop
+    name: str
+    latitude: float
+    longitude: float
+    routes: [Route]
+
+    def __init__(self, json: Dict[str, Any]):
+        super().__init__(json)
+
+        self.stop = Stop(json["StopID"])
+        self.latitude = json["Lat"]
+        self.longitude = json["Lon"]
+        self.routes = [get_route(route) for route in json["Routes"]]
         
 class PathDirection(Response):
     trip_headsign: str
     direction_text: str
     direction_number: str
-    shape: List[PathStop]
-    stops: List[Stop]
+    shape: List[PathShape]
+    stops: List[StopRoutes]
 
     def __init__(self, json: Dict[str, Any]):
         super().__init__(json)
 
         self.direction_number = json["DirectionNum"]
-        self.shape = [PathStop(stop) for stop in json["Shape"]]
-        self.stops = [Stop(stop) for stop in json["Stops"]]
+        self.shape = [PathShape(stop) for stop in json["Shape"]]
+        self.stops = [StopRoutes(stop) for stop in json["Stops"]]
 
 class PathDetails(Response):
     route: Route
@@ -104,7 +136,7 @@ class PathDetails(Response):
     def __init__(self, json: Dict[str, Any]):
         super().__init__(json)
 
-        self.route = Route[json["RouteID"]]
+        self.route = get_route(json["RouteID"])
 
         if direction := json["Direction0"]:
             self.direction_zero = PathDirection(direction)
@@ -138,7 +170,7 @@ class RouteInfo(Response):
     def __init__(self, json: Dict[str, Any]):
         super().__init__(json)
 
-        self.route = Route[json["RouteID"]]
+        self.route = get_route(json["RouteID"])
         self.direction_number = json["DirectionNum"]
         self.start_time = string_to_datetime(json["StartTime"])
         self.end_time = string_to_datetime(json["EndTime"])
@@ -168,7 +200,7 @@ class Prediction(Response):
         super().__init__(json)
 
         self.direction_number = json["DirectionNum"]
-        self.route = Route[json["RouteID"]]
+        self.route = get_route(json["RouteID"])
         self.trip_id = json["TripID"]
         self.vehicle_id = json["VehicleID"]
 
@@ -201,23 +233,8 @@ class Arrival(Response):
         self.direction_number = json["DirectionNum"]
         self.start_time = string_to_datetime(json["StartTime"])
         self.end_time = string_to_datetime(json["EndTime"])
-        self.route = Route[json["RouteID"]]
+        self.route = get_route(json["RouteID"])
         self.trip_id = json["TripID"]
-
-class StopRoutes(Response):
-    stop: Stop
-    name: str
-    latitude: float
-    longitude: float
-    routes: [Route]
-
-    def __init__(self, json: Dict[str, Any]):
-        super().__init__(json)
-
-        self.stop = Stop(json["StopID"])
-        self.latitude = json["Lat"]
-        self.longitude = json["Lon"]
-        self.routes = [Route[route] for route in json["Routes"]]
 
 class StopSchedule(Response):
     arrivals: List[Arrival]
@@ -226,3 +243,51 @@ class StopSchedule(Response):
     def __init__(self, json: Dict[str, Any]):
         self.arrivals = [Arrival(arrival) for arrival in json["ScheduleArrivals"]]
         self.stop = StopRoutes(json["Stop"])
+
+class RouteResponse(Response):
+    route: Route
+    name: str
+    line_description: str
+
+    def __init__(self, json: Dict[str, Any]):
+        super().__init__(json)
+
+        self.route = Route(json["RouteID"])
+
+
+class Routes(Response):
+    routes: List[RouteResponse]
+
+    def __init__(self, json: Dict[str, Any]):
+        self.routes = list(
+            map(
+                RouteResponse,
+                json["Routes"]
+            )
+        )
+
+class StopResponse(Response):
+    stop: Optional[Stop]
+    name: str
+    latitude: float
+    longitude: float
+    routes: List[Route]
+
+    def __init__(self, json: Dict[str, Any]):
+        super().__init__(json)
+
+        self.stop = get_optional_stop(json["StopID"])
+        self.latitude = json["Lat"]
+        self.longitude = json["Lon"]
+        self.routes = [get_route(route) for route in json["Routes"]]
+
+class Stops(Response):
+    stops: List[StopResponse]
+
+    def __init__(self, json: Dict[str, Any]):
+        self.stops = list(
+            map(
+                StopResponse,
+                json["Stops"]
+            )
+        )
