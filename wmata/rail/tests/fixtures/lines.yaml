@@ -1,0 +1,53 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.16.0
+      api_key:
+      - 9e38c3eab34c4e6c990828002828f5ed
+    method: GET
+    uri: https://api.wmata.com/Rail.svc/json/jLines
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAEAO29B2AcSZYlJi9tynt/SvVK1+B0oQiAYBMk2JBAEOzBiM3mkuwdaUcjKasqgcpl
+        VmVdZhZAzO2dvPfee++999577733ujudTif33/8/XGZkAWz2zkrayZ4hgKrIHz9+fB8/In7xR8+L
+        Zd589Oh78ttJNcs/evTRk+cfjT56WjSrMrt+kS34o3Kd04ev26xu6Z+2qJba+Ds79+iL0+Us/Pjz
+        nfv08dmyzetlVj7Nm7ZY8ve79GX8mz1880tGASqfv6K2ISqf13m+pE+pvy4uz3Z36YseLqe7O/Rx
+        pMf3w+XLPi5f1tnyYoAwv9fOAX3RQ+bpLugV6fL9kHn1lNqGyLzKZ/QZ9dbF5HgXc9HD5AlTK9If
+        MDke+hLIPKGhdfB5/ZPUPMTndVFe5jV9TN12UXqx8yl90UPpG+Ka36fPwL9PXpbVFX1MHXaROYnT
+        55RxjHQJZE53NtDno1/y/V/y/wCtHcQ9XAMAAA==
+    headers:
+      Arr-Disable-Session-Affinity:
+      - 'True'
+      Cache-Control:
+      - no-cache
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '370'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sun, 08 Dec 2019 12:06:17 GMT
+      Expires:
+      - '-1'
+      Pragma:
+      - no-cache
+      Vary:
+      - Accept-Encoding
+      X-AspNet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+    status:
+      code: 200
+      message: OK
+version: 1

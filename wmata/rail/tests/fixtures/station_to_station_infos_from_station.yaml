@@ -1,0 +1,85 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.16.0
+      api_key:
+      - 9e38c3eab34c4e6c990828002828f5ed
+    method: GET
+    uri: https://api.wmata.com/Rail.svc/json/jSrcStationToDstStationInfo?FromStationCode=A01
+  response:
+    body:
+      string: !!binary |
+        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
+        GDkAAA==
+    headers:
+      Arr-Disable-Session-Affinity:
+      - 'True'
+      Cache-Control:
+      - no-cache
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '2170'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sat, 07 Dec 2019 17:03:07 GMT
+      Expires:
+      - '-1'
+      Pragma:
+      - no-cache
+      Vary:
+      - Accept-Encoding
+      X-AspNet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+    status:
+      code: 200
+      message: OK
+version: 1

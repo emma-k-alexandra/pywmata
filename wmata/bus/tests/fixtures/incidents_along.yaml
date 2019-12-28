@@ -1,0 +1,53 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.16.0
+      api_key:
+      - 9e38c3eab34c4e6c990828002828f5ed
+    method: GET
+    uri: https://api.wmata.com/Incidents.svc/json/BusIncidents
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAEAO29B2AcSZYlJi9tynt/SvVK1+B0oQiAYBMk2JBAEOzBiM3mkuwdaUcjKasqgcpl
+        VmVdZhZAzO2dvPfee++999577733ujudTif33/8/XGZkAWz2zkrayZ4hgKrIHz9+fB8/In7xR0/W
+        zdlyWszyZdt89Oh7v/gj89fZ048effT04N79nZ3dJ9sPnjx8sL1/fP90+8nT4yfbJ7vH+08/ffhs
+        596zpx+N7Dtvrlc5vXVc5nVLH7+q1m3eHJ+f59M2nxH0j/Ye/l70+d7DF/Tvq9Pf+6Pvjz56mjfT
+        uli1RbWkV5+u87St0naep9XyoiqWF+mbOls2s/wyvarqt2nTVqtVdpGP0sm6yZv0qijLtFrlddbm
+        aZa+ztq0mc7z2boEhPRpPk33DtJfiK/Wy/5XD8f0s82KkiAtsjYbT6vF3Qz4N2PC8SlB/Wo1o38J
+        /Y/2dnYfbu/ube89eLN78Gj/3qN7ex/9ku//kv8HxNogmEUBAAA=
+    headers:
+      Arr-Disable-Session-Affinity:
+      - 'True'
+      Cache-Control:
+      - no-cache
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '380'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sat, 28 Dec 2019 19:12:05 GMT
+      Expires:
+      - '-1'
+      Pragma:
+      - no-cache
+      Vary:
+      - Accept-Encoding
+      X-AspNet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+    status:
+      code: 200
+      message: OK
+version: 1

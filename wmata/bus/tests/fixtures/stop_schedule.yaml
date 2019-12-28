@@ -1,0 +1,51 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.16.0
+      api_key:
+      - 9e38c3eab34c4e6c990828002828f5ed
+    method: GET
+    uri: https://api.wmata.com/Bus.svc/json/jStopSchedule?StopID=3003037
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAEAO29B2AcSZYlJi9tynt/SvVK1+B0oQiAYBMk2JBAEOzBiM3mkuwdaUcjKasqgcpl
+        VmVdZhZAzO2dvPfee++999577733ujudTif33/8/XGZkAWz2zkrayZ4hgKrIHz9+fB8/In7xR6/b
+        avXRI/l59vSjRx/d29m5t3PvwUejj15ki5w++PzV6emLJ6fP36Sv3xy/OfvyRfpJ+uSr1+mT498n
+        fUrNnlfLjx5tP/h0/HCXXr1HH2TtR4/uPRzv7O7ef/hg9NGrat3mzUePvvfRk3s7H33/l4w+ej2d
+        57N1mR/XdXGZlfju+7/k/wEfMSkqjAAAAA==
+    headers:
+      Arr-Disable-Session-Affinity:
+      - 'True'
+      Cache-Control:
+      - no-cache
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '253'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sat, 28 Dec 2019 19:35:44 GMT
+      Expires:
+      - '-1'
+      Pragma:
+      - no-cache
+      Vary:
+      - Accept-Encoding
+      X-AspNet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+    status:
+      code: 200
+      message: OK
+version: 1
