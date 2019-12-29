@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="wmata-emmakalexandra",
+    name="wmata",
     version="1.0.0",
     author="Emma K Alexandra",
     author_email="emma@emma.sh",
